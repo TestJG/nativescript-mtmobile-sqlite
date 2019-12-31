@@ -34,11 +34,11 @@ export class HelloWorldModel extends Observable {
     insert(data: DataExample[]) {
         data.map((data, i) => {
             const insert = `INSERT INTO names (id, name, json) VALUES (?, ?, ?)`;
-            // Uncomment to crash it
-            if (i === 1000) {
-                console.log("About to crash!");
-                data.id = 0;
-            }
+            // // Uncomment to test transaction
+            // if (i === 1000) {
+            //     console.log("About to crash!");
+            //     data.id = 0;
+            // }
             this.sqlite.execute(insert, [
                 data.id,
                 data.name,
@@ -66,7 +66,8 @@ export class HelloWorldModel extends Observable {
     onSelect() {
         const select = "SELECT * FROM names WHERE id < 20";
         const data = this.sqlite.select(select);
-        console.log(`Received data: ${JSON.stringify(data)}`);
+        console.log(`Received #${data.length} data items`);
+        console.log(data);
     }
 
     onReset() {
