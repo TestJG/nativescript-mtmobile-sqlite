@@ -17,7 +17,8 @@ matrix:
       jdk: oraclejdk8
       before_install: nvm install 8
       script: cd demo && npm run build.plugin && npm i && tns build android --env.uglify --env.snapshot
-      env:
+
+    - env:
         - BuildAndroid="29"
         - Type="TypeScript"
       language: android
@@ -27,7 +28,7 @@ matrix:
       before_install: nvm install 10
       script: cd demo && npm run build.plugin && npm i && tns build android --env.uglify --env.snapshot
 
-      os: osx
+    - os: osx
       env:
         - BuildiOS="12.0"
         - Type="TypeScript"
